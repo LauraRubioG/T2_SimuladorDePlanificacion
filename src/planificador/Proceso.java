@@ -5,6 +5,7 @@ public class Proceso {
     private final String nombre;
     private final int llegada;               // en el momento que entra
     private final int rafaga;                // cuanto tiempo necesita la CPU en total
+    private final int ordenFichero;          // orden para saber cual entra primero por llegada
     private int tiempoRestante;       // tiempo para terminar
     private EstadoProceso estado;     // estado en el que se encuentra
 
@@ -14,10 +15,11 @@ public class Proceso {
     public int finCPU;
 
     //CONSTRUCTOR PARA UN PROCESO NUEVO
-    public Proceso(String nombre, int llegada, int rafaga){
+    public Proceso(String nombre, int llegada, int rafaga, int ordenFichero){
         this.nombre = nombre;
         this.llegada = llegada;
         this.rafaga = rafaga;
+        this.ordenFichero = ordenFichero;
         this.tiempoRestante = rafaga;    //al iniciar un nuevo proceso el tiempoRestante debe empezar siendo igual que la rafaga
         this.estado = EstadoProceso.NUEVO;     // lo iniciamos siempre como nuevo
         // al valer -1 aun no ha entrado en la CPU
@@ -61,6 +63,10 @@ public class Proceso {
     public int getTiempoRestante(){
         return tiempoRestante;
     }
+    //devuelve el orden
+    public int getOrdenFichero(){
+        return ordenFichero;
+    }
 
     //nos permite cambiar el estado
     public void setEstado(EstadoProceso estado){
@@ -83,6 +89,12 @@ public class Proceso {
     //Metodo para Respusta = instante primero en la CPU - llegada
     public int getRespuesta(){
         return inicioCPU - llegada;
+    }
+
+    //METODO PARA RESTARLE UN MINUTO AL PROCESO CUADNO ESTA EN LA CPU
+    //Y poder acceder al el
+    public void restarTiempo(){
+        this.tiempoRestante--;
     }
 
 }
