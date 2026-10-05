@@ -17,7 +17,7 @@ public class Proceso {
         this.nombre = nombre;
         this.llegada = llegada;
         this.rafaga = rafaga;
-        this.tiempoRestante = rafaga;
+        this.tiempoRestante = rafaga;    //al iniciar un nuevo proceso el tiempoRestante debe empezar siendo igual que la rafaga
         this.estado = EstadoProceso.NUEVO;     // lo iniciamos siempre como nuevo
     }
 
